@@ -1,0 +1,62 @@
+{
+    "name": "amarenkov/laravel-mutable-content-finance",
+    "description": "Personal finance domain for laravel-mutable-content: accounts, operations split by categories, transfers, debts and receipts, with services, without a UI.",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "eloquent",
+        "finance",
+        "personal-finance",
+        "money",
+        "accounting",
+        "dynamic-fields",
+        "custom-fields"
+    ],
+    "homepage": "https://github.com/amarenkov/laravel-mutable-content-finance",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Marenkov",
+            "email": "alex@marenkov.dev",
+            "homepage": "https://github.com/amarenkov"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/amarenkov/laravel-mutable-content-finance/issues",
+        "source": "https://github.com/amarenkov/laravel-mutable-content-finance"
+    },
+    "require": {
+        "php": "^8.4",
+        "ext-bcmath": "*",
+        "amarenkov/laravel-mutable-content": "^0.7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amarenkov\\MutableContentFinance\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amarenkov\\MutableContentFinance\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Amarenkov\\MutableContentFinance\\MutableContentFinanceServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.0",
+        "larastan/larastan": "^3.0"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse"
+    }
+}
