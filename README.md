@@ -2,6 +2,7 @@
 
 [![tests](https://github.com/amarenkov/laravel-mutable-content-finance/actions/workflows/tests.yml/badge.svg)](https://github.com/amarenkov/laravel-mutable-content-finance/actions/workflows/tests.yml)
 [![Packagist](https://img.shields.io/packagist/v/amarenkov/laravel-mutable-content-finance)](https://packagist.org/packages/amarenkov/laravel-mutable-content-finance)
+![coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)
 
 Personal finance domain for [`amarenkov/laravel-mutable-content`](https://github.com/amarenkov/laravel-mutable-content):
 accounts, operations split by categories, transfers between accounts and currencies, debts and
