@@ -8,8 +8,6 @@ Personal finance domain for [`amarenkov/laravel-mutable-content`](https://github
 accounts, operations split by categories, transfers between accounts and currencies, debts and
 receipts, with services and events to build any interface on.
 
-> Work in progress. Nothing is released yet.
-
 ## Scope
 
 - Models with mutable fields, so an application adds its own fields without migrations.
