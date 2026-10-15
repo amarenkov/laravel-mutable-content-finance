@@ -7,6 +7,10 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Requires core ^0.7.7: money arithmetic no longer needs the bcmath extension, `ext-bcmath` is not required.
+
 ## [0.1.0] - 2026-10-15
 
 ### Added

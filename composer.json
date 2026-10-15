@@ -27,8 +27,7 @@
     },
     "require": {
         "php": "^8.4",
-        "ext-bcmath": "*",
-        "amarenkov/laravel-mutable-content": "^0.7.5"
+        "amarenkov/laravel-mutable-content": "^0.7.7"
     },
     "autoload": {
         "psr-4": {

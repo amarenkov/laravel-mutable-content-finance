@@ -36,7 +36,7 @@ returned: its sign tells the direction, `Counterparty::debts()` sums them by cur
 
 ## Requirements
 
-- PHP 8.4 with bcmath
+- PHP 8.4
 - Laravel 13
 - PostgreSQL or MariaDB 10.7+, as required by `amarenkov/laravel-mutable-content`
 
