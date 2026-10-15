@@ -7,6 +7,8 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-15
+
 ### Changed
 
 - Requires core ^0.7.7: money arithmetic no longer needs the bcmath extension, `ext-bcmath` is not required.
@@ -21,5 +23,6 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Events dispatched after commit: `OperationCreated`, `OperationUpdated`, `OperationDeleted`.
 - Migration in the `finance` schema (publish tag `mutable-content-finance-migrations`), LOVs and classes registered in the core registries, Russian labels.
 
-[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/amarenkov/laravel-mutable-content-finance/releases/tag/v0.1.0
