@@ -7,6 +7,10 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The account of an operation can be changed with `Operations::of($operation)->update()`: the new account must be in the currency of the amount, a transfer side cannot move to the account of its pair.
+
 ## [0.1.1] - 2026-10-15
 
 ### Changed

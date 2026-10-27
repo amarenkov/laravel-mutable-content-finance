@@ -2,6 +2,8 @@
 
 namespace Amarenkov\MutableContentFinance\Services;
 
+use DomainException;
+
 use Illuminate\Support\Facades\DB;
 
 use Amarenkov\MutableContent\Domain\Log\Changes;
@@ -17,7 +19,8 @@ use Amarenkov\MutableContentFinance\Services\Concerns\ActsAs;
 use Amarenkov\MutableContentFinance\Services\Concerns\WritesSplits;
 
 /**
- * Changes of an operation. The date of a transfer changes on both sides; deleting a transfer deletes both.
+ * Changes of an operation. The account may change within the same currency, a transfer side not to the account of its pair.
+ * The date of a transfer changes on both sides; deleting a transfer deletes both.
  */
 class OperationActions
 {
@@ -64,6 +67,11 @@ class OperationActions
             $before = $operation->fields?->toArray() ?? [];
 
             $operation->fill($fields);
+
+            if ($operation->transfer && (int)$operation->getField(Operation::FIELD_ACCOUNT_ID) === (int)$operation->transfer->getField(Operation::FIELD_ACCOUNT_ID)) {
+                throw new DomainException(__('mutable-content-finance::finance.transfer_same_account'));
+            }
+
             $this->prepareLog($operation);
             $operation->save();
 

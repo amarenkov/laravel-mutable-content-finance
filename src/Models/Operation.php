@@ -35,7 +35,7 @@ use Amarenkov\MutableContentFinance\Lovs\OperationKind;
 class Operation extends ModelWithFields
 {
     // const
-    #[CFAType(Type::TYPE_OBJECT), CFALabel('Account'), CFAIsRequired, CFAIsImmutable, CFAObjectClass(Account::class)]
+    #[CFAType(Type::TYPE_OBJECT), CFALabel('Account'), CFAIsRequired, CFAObjectClass(Account::class)]
     public const FIELD_ACCOUNT_ID = 'account_id';
 
     #[CFAType(Type::TYPE_DATETIME), CFALabel('Date'), CFAIsRequired]
@@ -68,6 +68,10 @@ class Operation extends ModelWithFields
     protected static function booted(): void
     {
         static::saving(function (Operation $operation) {
+            if ($operation->relationLoaded('account') && $operation->account?->id !== (int)$operation->getField(self::FIELD_ACCOUNT_ID)) {
+                $operation->unsetRelation('account');
+            }
+
             $amount = $operation->money();
             $account = $operation->account;
 

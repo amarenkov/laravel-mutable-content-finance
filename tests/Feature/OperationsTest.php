@@ -74,6 +74,34 @@ class OperationsTest extends TestCase
         $this->assertSame('0', $this->makeAccount('Empty')->balance()->amount);
     }
 
+    public function test_operation_moves_to_another_account_of_the_same_currency(): void
+    {
+        $card = $this->makeAccount('Card');
+        $bank = $this->makeAccount('Bank');
+        $this->addCurrency('EUR');
+        $euro = $this->makeAccount('Euro', 'EUR');
+        $income = Operations::new($card)->kind(OperationKind::INCOME)->amount(100)->at('2026-10-01 10:00')->save();
+
+        Operations::of($income)->update([Operation::FIELD_ACCOUNT_ID => $bank->id]);
+
+        $this->assertSame($bank->id, $income->fresh()->account->id);
+        $this->assertSame('0', $card->balance()->amount);
+        $this->assertSame('100', $bank->balance()->amount);
+
+        $this->expectException(DomainException::class);
+        Operations::of($income->fresh())->update([Operation::FIELD_ACCOUNT_ID => $euro->id]);
+    }
+
+    public function test_transfer_side_does_not_move_to_the_account_of_its_pair(): void
+    {
+        $card = $this->makeAccount('Card');
+        $bank = $this->makeAccount('Bank');
+        [$out] = Operations::transfer($card, $bank)->amount(50)->at('2026-10-01 10:00')->save();
+
+        $this->expectException(DomainException::class);
+        Operations::of($out)->update([Operation::FIELD_ACCOUNT_ID => $bank->id]);
+    }
+
     public function test_operation_fields_and_business_flag_from_the_counterparty(): void
     {
         $card = $this->makeAccount('Card');
