@@ -7,6 +7,8 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-27
+
 ### Changed
 
 - The account of an operation can be changed with `Operations::of($operation)->update()`: the new account must be in the currency of the amount, a transfer side cannot move to the account of its pair.
@@ -27,6 +29,7 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Events dispatched after commit: `OperationCreated`, `OperationUpdated`, `OperationDeleted`.
 - Migration in the `finance` schema (publish tag `mutable-content-finance-migrations`), LOVs and classes registered in the core registries, Russian labels.
 
-[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/amarenkov/laravel-mutable-content-finance/releases/tag/v0.1.0
