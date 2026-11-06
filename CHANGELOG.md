@@ -7,6 +7,10 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-06
+
+Requires `amarenkov/laravel-mutable-content` ^0.9.
+
 ### Removed
 
 - `Support\Users`, replaced by the core `UserHelper`.
@@ -39,7 +43,8 @@ Requires `amarenkov/laravel-mutable-content` ^0.8.
 - Events dispatched after commit: `OperationCreated`, `OperationUpdated`, `OperationDeleted`.
 - Migration in the `finance` schema (publish tag `mutable-content-finance-migrations`), LOVs and classes registered in the core registries, Russian labels.
 
-[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/amarenkov/laravel-mutable-content-finance/compare/v0.1.0...v0.1.1
