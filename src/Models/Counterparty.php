@@ -2,9 +2,7 @@
 
 namespace Amarenkov\MutableContentFinance\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -21,9 +19,10 @@ use Amarenkov\MutableContent\Attributes\FieldAttr\Common\Type as CFAType;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\Label as CFALabel;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsRequired as CFAIsRequired;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsImmutable as CFAIsImmutable;
+use Amarenkov\MutableContent\Models\Concerns\OwnedByUser;
+use Amarenkov\MutableContent\Helpers\UserHelper;
 
 use Amarenkov\MutableContentFinance\Lovs\OperationKind;
-use Amarenkov\MutableContentFinance\Support\Users;
 
 /**
  * Who money goes to or comes from: a shop, a client, a person. Debts are counted by counterparty.
@@ -33,6 +32,8 @@ use Amarenkov\MutableContentFinance\Support\Users;
 #[CommonFieldLabel]
 class Counterparty extends ModelWithFields
 {
+    use OwnedByUser;
+
     // const
     #[CFAType(Type::TYPE_INT), CFALabel('Owner'), CFAIsRequired, CFAIsImmutable]
     public const FIELD_USER_ID = 'user_id';
@@ -43,18 +44,10 @@ class Counterparty extends ModelWithFields
     #[CFAType(Type::TYPE_BOOL), CFALabel('Business income')]
     public const FIELD_IS_BUSINESS = 'is_business';
 
-    // static
-    protected static array|bool|null $fieldDefinitions = null;
-
     // public
-    public function scopeOwnedBy(Builder $query, Authenticatable|int $user): Builder
-    {
-        return $query->whereField(self::FIELD_USER_ID, $user instanceof Authenticatable ? $user->getAuthIdentifier() : $user);
-    }
-
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Users::model(), self::FIELD_USER_ID);
+        return $this->belongsTo(UserHelper::model('mutable-content-finance'), self::FIELD_USER_ID);
     }
 
     /**

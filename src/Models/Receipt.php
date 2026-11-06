@@ -33,9 +33,6 @@ class Receipt extends ModelWithFields
     #[CFAType(Type::TYPE_TEXT), CFALabel('QR code'), CFAIsRequired, CFAIsImmutable]
     public const FIELD_QR = 'qr';
 
-    // static
-    protected static array|bool|null $fieldDefinitions = null;
-
     // public
     /**
      * @return BelongsTo<Operation, $this>

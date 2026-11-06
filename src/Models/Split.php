@@ -36,9 +36,6 @@ class Split extends ModelWithFields
     #[CFAType(Type::TYPE_MONEY), CFALabel('Amount'), CFAIsRequired]
     public const FIELD_AMOUNT = 'amount';
 
-    // static
-    protected static array|bool|null $fieldDefinitions = null;
-
     // public
     /**
      * @return BelongsTo<Operation, $this>

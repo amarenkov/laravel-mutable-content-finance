@@ -19,7 +19,6 @@ use Amarenkov\MutableContent\Attributes\Class\Label as ClassLabel;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\Type as CFAType;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\Label as CFALabel;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsRequired as CFAIsRequired;
-use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsImmutable as CFAIsImmutable;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\LovCode as CFALovCode;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\ObjectClass as CFAObjectClass;
 
@@ -63,8 +62,6 @@ class Operation extends ModelWithFields
     public const FIELD_REFUND_OF_ID = 'refund_of_id';
 
     // static
-    protected static array|bool|null $fieldDefinitions = null;
-
     protected static function booted(): void
     {
         static::saving(function (Operation $operation) {

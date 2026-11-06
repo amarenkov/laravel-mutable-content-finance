@@ -5,6 +5,7 @@ namespace Amarenkov\MutableContentFinance\Services\Concerns;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 use Amarenkov\MutableContent\Models\ModelWithFields;
+use Amarenkov\MutableContent\Helpers\UserHelper;
 
 /**
  * Who does the action and why: the user becomes the change log author.
@@ -24,7 +25,7 @@ trait ActsAs
     // public
     public function by(Authenticatable|int|null $user): static
     {
-        $this->userId = $user instanceof Authenticatable ? (int)$user->getAuthIdentifier() : $user;
+        $this->userId = UserHelper::id($user);
 
         return $this;
     }

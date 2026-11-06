@@ -2,9 +2,7 @@
 
 namespace Amarenkov\MutableContentFinance\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -21,9 +19,10 @@ use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsRequired as CFAIsRequ
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\IsImmutable as CFAIsImmutable;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\LovCode as CFALovCode;
 use Amarenkov\MutableContent\Attributes\FieldAttr\Common\ObjectClass as CFAObjectClass;
+use Amarenkov\MutableContent\Models\Concerns\OwnedByUser;
+use Amarenkov\MutableContent\Helpers\UserHelper;
 
 use Amarenkov\MutableContentFinance\Lovs\CategoryKind;
-use Amarenkov\MutableContentFinance\Support\Users;
 
 /**
  * What money is spent on or comes from: Food, Cafe, Salary. Categories form a tree; an operation is split by them.
@@ -33,6 +32,8 @@ use Amarenkov\MutableContentFinance\Support\Users;
 #[CommonFieldLabel]
 class Category extends ModelWithFields
 {
+    use OwnedByUser;
+
     // const
     #[CFAType(Type::TYPE_INT), CFALabel('Owner'), CFAIsRequired, CFAIsImmutable]
     public const FIELD_USER_ID = 'user_id';
@@ -43,18 +44,10 @@ class Category extends ModelWithFields
     #[CFAType(Type::TYPE_OBJECT), CFALabel('Parent'), CFAObjectClass(Category::class)]
     public const FIELD_PARENT_ID = 'parent_id';
 
-    // static
-    protected static array|bool|null $fieldDefinitions = null;
-
     // public
-    public function scopeOwnedBy(Builder $query, Authenticatable|int $user): Builder
-    {
-        return $query->whereField(self::FIELD_USER_ID, $user instanceof Authenticatable ? $user->getAuthIdentifier() : $user);
-    }
-
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Users::model(), self::FIELD_USER_ID);
+        return $this->belongsTo(UserHelper::model('mutable-content-finance'), self::FIELD_USER_ID);
     }
 
     /**

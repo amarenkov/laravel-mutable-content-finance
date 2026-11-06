@@ -7,6 +7,10 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `Support\Users`, replaced by the core `UserHelper`.
+
 ## [0.3.0] - 2026-11-04
 
 ### Changed
